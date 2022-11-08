@@ -1,2 +1,3 @@
 # Cloud-DDS
-This repositori groups options to deploy ROS2 and the DDS on cloud networks
+
+This repository groups options to deploy ROS2 and the DDS over cloud networks
