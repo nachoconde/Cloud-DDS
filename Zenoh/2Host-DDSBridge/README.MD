@@ -1,10 +1,18 @@
 # ZENOH-TESTING
 
-## Scenario 1
+## Summary
+
+| Test     | Result |
+| ---      | ---       |
+| Talker & Listener |:white_check_mark: |
+| Services calls     |   :x:     |
+| Actions      |   :white_check_mark:     |
+
+## Scenario 1 - Talker & Listener
 
 Login on VM-1 and run:
 
-```
+```bash
 docker exec -it roshumble /bin/bash
 source ./ros_entrypoint
 ros2 run demo_nodes_cpp listener
@@ -12,18 +20,18 @@ ros2 run demo_nodes_cpp listener
 
 Login on VM-2 and run
 
-```
+```bash
 docker exec -it roshumble /bin/bash
 source ./ros_entrypoint
 ros2 run demo_nodes_cpp talker
 
 ```
 
-### Result of the test
+### Result of the test 1
 
-Sucess. Listener can heard the hello world
+Success. Listener can heard the hello world
 
-```
+```bash
 [INFO] [1668010153.858651685] [listener]: I heard: [Hello World: 1]
 [INFO] [1668010154.857863364] [listener]: I heard: [Hello World: 2]
 [INFO] [1668010155.857946670] [listener]: I heard: [Hello World: 3]
@@ -34,7 +42,7 @@ Sucess. Listener can heard the hello world
 
 Zenoh logs on machine-1
 
-```
+```bash
 zenoh        | [2022-11-09T16:09:12Z INFO  zplugin_dds] Ignoring Subscription for resource ros_discovery_info as it is not allowed (see your 'allow' or 'deny' configuration)
 zenoh        | [2022-11-09T16:09:12Z INFO  zplugin_dds] New route: zenoh 'rt/rosout' => DDS Writer dd311001d8d322d89b8a0ae200000503 on 'rt/rosout' with type 'rcl_interfaces::msg::dds_::Log_'
 zenoh        | [2022-11-09T16:09:12Z INFO  zplugin_dds] Ignoring Publication for resource ros_discovery_info as it is not allowed (see your 'allow' or 'deny' configuration)
@@ -89,7 +97,7 @@ source ./ros_entrypoint
 ros2 run demo_nodes_cpp add_two_ints_client_async
 ```
 
-### Result of the test
+### Result of the test 2
 
 No success: Service client not getting a response
 
@@ -119,7 +127,7 @@ zenoh        | [2022-11-09T16:14:29Z INFO  zplugin_dds] New route: DDS Reader dd
 
 Logs on Machine2
 
-```
+```bash
 zenoh        | [2022-11-09T16:14:25Z INFO  zplugin_dds] New route: zenoh 'rr/add_two_ints_server/set_parametersReply' => DDS Writer 493c100133da61eef3f74a3300002603 on 'rr/add_two_ints_server/set_parametersReply' with type 'rcl_interfaces::srv::dds_::SetParameters_Response_'
 zenoh        | [2022-11-09T16:14:25Z INFO  zplugin_dds] New route: DDS Reader 493c100133da61eef3f74a3300002704 on 'rq/add_two_ints_server/set_parametersRequest' => zenoh 'rq/add_two_ints_server/set_parametersRequest' with type 'rcl_interfaces::srv::dds_::SetParameters_Request_'
 zenoh        | [2022-11-09T16:14:25Z INFO  zplugin_dds] Ignoring Subscription for resource ros_discovery_info as it is not allowed (see your 'allow' or 'deny' configuration)
@@ -159,7 +167,7 @@ source ./ros_entrypoint
 ros2 run examples_rclpy_minimal_action_server server
 ```
 
-### Result of the test
+### Result of the test 3
 
 Success: Actions works
 
