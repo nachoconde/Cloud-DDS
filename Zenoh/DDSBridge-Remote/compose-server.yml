@@ -2,10 +2,11 @@ version: "3.7"
 services:
   zenoh:
       container_name: zenoh
-      image: eclipse/zenoh-bridge-dds:master
+      image: eclipse/zenoh-bridge-dds:issue_102 
       privileged: true
-      command: "-d 1 -f -l tcp/192.168.201.128:7447"
+      command: "-d 1 -f -l tcp/10.10.200.9:443"
       network_mode: host
+ 
   roshumble:
       container_name: roshumble
       image: osrf/ros2:nightly-rmw
@@ -17,9 +18,7 @@ services:
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
       - CYCLONEDDS_URI=file:///dds.xml
       - ROS_DOMAIN_ID=1
-      - DISPLAY=${DISPLAY}
-      command: tail -f /dev/null
+      command: bash -c " source /ros_entrypoint.sh;  ros2 run demo_nodes_cpp add_two_ints_server" 
       volumes:
-        - /tmp/.X11-unix:/tmp/.X11-unix
-        - /home/unmanned/zenoh/cyclonedds.xml:/dds.xml
-  
+        - ${PWD}/cyclonedds.xml:/dds.xml
+  #docker-compose -f compose-server.yml up --detach
