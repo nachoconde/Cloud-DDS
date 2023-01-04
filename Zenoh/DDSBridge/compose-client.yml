@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  zenoh:
+    container_name: zenoh
+    image: eclipse/zenoh-bridge-dds:master
+    privileged: true
+    command: '-d 2 -f -e tcp/212.170.246.26:443'
+    network_mode: host
+  roshumble:
+    container_name: roshumble
+    image: osrf/ros2:nightly-rmw
+    network_mode: host
+    privileged: true
+    depends_on:
+      - zenoh
+    environment:
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - CYCLONEDDS_URI=file:///dds.xml
+      - ROS_DOMAIN_ID=2
+    command: tail -f /dev/null
+    volumes:
+      - ${PWD}/cyclonedds.xml:/dds.xml
+      - ${PWD}/testROS2.sh:/testROS2.sh

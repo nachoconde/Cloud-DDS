@@ -1,20 +1,17 @@
 # ZENOH-TESTING
 
 Those tests consist on run ROS2 communication services (talker & listener, service calls and actions) using zenoh as the DDS bridge
-The test has been run using a fix (eclipse/zenoh-bridge-dds:issue_102 ) to to solve the problems found on DDSBridge-SameHost and a configuration option       (reliable_routes_blocking) true in the zenoh bridge
-
-Date of test: 12/14/2022
 
 ## Bandwith and network
 
 Initial test of bandwith and latency
 
-netperf -H 212.170.246.26 -p 5581 TCP_STREAM -l 5 -f M --  -m 1500
-netperf -H 212.170.246.26 -p 5600 -l 5  -t TCP_RR  -v 2 -- -o mean_latency
+netperf -H 212.170.246.26 -p 5581 TCP_STREAM -l 5 -f M -- -m 1500
+netperf -H 212.170.246.26 -p 5600 -l 5 -t TCP_RR -v 2 -- -o mean_latency
 
-|  | Bandwidth | Latency |
-| ---     | ---       |---  |
-|Initial |9.21 Mbits/s | 18,90125|
+|         | Bandwidth    | Latency   |
+| ------- | ------------ | --------- |
+| Initial | 9.21 Mbits/s | 18,90 sec |
 
 ## Scenario 1 - Talker & Listener
 
@@ -59,7 +56,7 @@ ros2 run demo_nodes_cpp add_two_ints_client_async
 
 ### Result of the test 2
 
-No success: Service client not getting a response
+Success: Service client getting a response
 
 ## Scenario 3 - Actions
 

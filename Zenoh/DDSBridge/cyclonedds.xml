@@ -8,7 +8,6 @@
             <AllowMulticast>default</AllowMulticast>
             <MaxMessageSize>65500B</MaxMessageSize>
         </General>
-
         <Internal>
             <Watermarks>
                 <WhcHigh>500kB</WhcHigh>
