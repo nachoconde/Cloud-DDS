@@ -10,9 +10,6 @@
 			<Transport>udp</Transport>
 		</General>
 		<Discovery>
-			<Peers>
-				<Peer address="192.168.253.122"/>
-			</Peers>
 			<ParticipantIndex>auto</ParticipantIndex>
 			<MaxAutoParticipantIndex>10</MaxAutoParticipantIndex>
 		</Discovery>
