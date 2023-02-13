@@ -4,7 +4,7 @@ services:
     container_name: zenoh
     image: eclipse/zenoh-bridge-dds:master
     privileged: true
-    command: '-d 2 -f -e tcp/192.168.253.123:443 --no-multicast-scouting'
+    command: '-d 2 -f -e tcp/192.168.253.123:443'
     network_mode: host
     environment:
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
