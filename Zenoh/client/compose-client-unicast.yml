@@ -4,8 +4,14 @@ services:
     container_name: zenoh
     image: eclipse/zenoh-bridge-dds:master
     privileged: true
-    command: '-d 2 -f -e tcp/212.170.246.26:443'
+    command: '-d 2 -f -e tcp/192.168.253.123:443 --no-multicast-scouting'
     network_mode: host
+    environment:
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - CYCLONEDDS_URI=file:///dds.xml
+    volumes:
+      - ${PWD}/ddscfg/cyclonedds_unicast_Zenoh.xml:/dds.xml
+
   roshumble:
     container_name: roshumble
     image: osrf/ros2:nightly-rmw
@@ -17,7 +23,7 @@ services:
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
       - CYCLONEDDS_URI=file:///dds.xml
       - ROS_DOMAIN_ID=2
-    command: tail -f /dev/null
+    command: bash -c "./ros2clients.sh "
     volumes:
-      - ${PWD}/cyclonedds.xml:/dds.xml
-      - ${PWD}/testROS2.sh:/testROS2.sh
+      - ${PWD}/ddscfg/cyclonedds_unicast_ROS.xml:/dds.xml
+      - ${PWD}/scripts/ros2clients.sh:/ros2clients.sh

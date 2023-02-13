@@ -2,17 +2,6 @@
 
 Those tests consist on run ROS2 communication services (talker & listener, service calls and actions) using zenoh as the DDS bridge
 
-## Bandwith and network
-
-Initial test of bandwith and latency
-
-netperf -H 212.170.246.26 -p 5581 TCP_STREAM -l 5 -f M -- -m 1500
-netperf -H 212.170.246.26 -p 5600 -l 5 -t TCP_RR -v 2 -- -o mean_latency
-
-|         | Bandwidth    | Latency   |
-| ------- | ------------ | --------- |
-| Initial | 9.21 Mbits/s | 18,90 sec |
-
 ## Scenario 1 - Talker & Listener
 
 Login on VM-1 and run:
