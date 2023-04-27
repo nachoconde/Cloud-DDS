@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+
+  ddsrouter_1:
+    image: ubuntu-vulcanexus:humble-desktop
+    container_name: ddsrouter
+    volumes:
+      - ./ddsrouter_server.yaml:/config.yaml
+    command: bash -c "sleep 2 && ddsrouter -c /config.yaml"
+    network_mode: host
+
+  rosnode_1:
+    image: ubuntu-vulcanexus:humble-desktop
+    container_name: rosnode_1
+    privileged: true
+    depends_on:
+      - ddsrouter_1
+    environment:
+      - ROS_DOMAIN_ID=1
+    command: tail -f /dev/null
+  
+#source /opt/ros/humble/setup.bash
+#ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp talker
+#ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp add_two_ints_client_async

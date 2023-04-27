@@ -9,12 +9,12 @@
             <MaxMessageSize>1400B</MaxMessageSize> 
 			<Transport>udp</Transport>
 		</General>
-		<Discovery>
+			<Discovery>
 			<Peers>
 				<Peer address="192.168.253.122"/>
 			</Peers>
 			<ParticipantIndex>auto</ParticipantIndex>
-			<MaxAutoParticipantIndex>10</MaxAutoParticipantIndex>
+			<MaxAutoParticipantIndex>15</MaxAutoParticipantIndex>
 		</Discovery>
 		<Internal>
 			<Watermarks>
@@ -22,7 +22,7 @@
 			</Watermarks>
 		</Internal>
 		<Tracing>
-			<Verbosity>config</Verbosity>
+			<Verbosity>info</Verbosity>
 			<OutputFile>stdout</OutputFile>
 		</Tracing>
 	</Domain>

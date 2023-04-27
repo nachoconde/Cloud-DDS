@@ -7,7 +7,7 @@ services:
     command: '-d 2 -f -e tcp/192.168.253.123:443'
     network_mode: host
     environment:
-      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - CYCLONEDDS_URI=file:///dds.xml
     volumes:
       - ${PWD}/ddscfg/cyclonedds_multicast.xml:/dds.xml
 

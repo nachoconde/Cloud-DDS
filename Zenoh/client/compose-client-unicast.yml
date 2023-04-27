@@ -7,10 +7,9 @@ services:
     command: '-d 2 -f -e tcp/192.168.253.123:443'
     network_mode: host
     environment:
-      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
       - CYCLONEDDS_URI=file:///dds.xml
     volumes:
-      - ${PWD}/ddscfg/cyclonedds_unicast_Zenoh.xml:/dds.xml
+      - ./ddscfg/cyclonedds_unicast.xml:/dds.xml
 
   roshumble:
     container_name: roshumble
@@ -25,5 +24,5 @@ services:
       - ROS_DOMAIN_ID=2
     command: bash -c "./ros2clients.sh "
     volumes:
-      - ${PWD}/ddscfg/cyclonedds_unicast_ROS.xml:/dds.xml
-      - ${PWD}/scripts/ros2clients.sh:/ros2clients.sh
+      - ./ddscfg/cyclonedds_unicast.xml:/dds.xml
+      - ./scripts/ros2clients.sh:/ros2clients.sh

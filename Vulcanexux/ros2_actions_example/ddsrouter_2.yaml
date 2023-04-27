@@ -1,0 +1,20 @@
+version: v3.0
+
+participants:
+
+  # - name: Echo
+  #   kind: echo
+  #   discovery: true
+  #   data: true
+  #   verbose: true
+
+  - name: Participant_Simple
+    kind: simple
+    domain: 2
+
+  - name: Participant_WAN
+    kind: wan
+    listening-addresses:
+      - domain: ddsrouter_2
+        port: 21666
+        transport: udp

@@ -1,9 +1,13 @@
 #!/bin/bash
 source /ros_entrypoint.sh
+
+ros2 run demo_nodes_cpp talker &
+
+
 echo "starting testing services"
 SER_ERROR=0
 SER_SUCCESS=0
-for i in {1..100}
+for i in {1..50}
 do
     ros2 run demo_nodes_cpp add_two_ints_client
     if [ $? -gt 0 ]
@@ -20,7 +24,7 @@ done
 echo "starting testing actions"
 ACT_ERROR=0
 ACT_SUCCESS=0
-for i in {1..100}
+for i in {1..50}
 do
     ros2 run examples_rclpy_minimal_action_client client
     if [ $? -gt 0 ]

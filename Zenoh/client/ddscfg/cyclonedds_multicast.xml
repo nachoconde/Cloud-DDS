@@ -12,9 +12,9 @@
                 <WhcHigh>500kB</WhcHigh>
             </Watermarks>
         </Internal>
-        <Tracing>
-            <Verbosity>config</Verbosity>
-            <OutputFile>cdds.log.${CYCLONEDDS_PID}</OutputFile>
-        </Tracing>
+	    <Tracing>
+			<Verbosity>info</Verbosity>
+			<OutputFile>stdout</OutputFile>
+		</Tracing>
     </Domain>
 </CycloneDDS>

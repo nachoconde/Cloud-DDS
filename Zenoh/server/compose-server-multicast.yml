@@ -7,9 +7,9 @@ services:
     privileged: true
     command: '-d 1 -f -l tcp/192.168.253.123:443'
     environment:
-      - CYCLONEDDS_URI=file:///dds.xml
+      - CYCLONEDDS_URI=file:///cyclonedds_multicast.xml
     volumes:
-      - ${PWD}/ddscfg/cyclonedds_multicast.xml:/dds.xml
+      - ${PWD}/ddscfg/cyclonedds_multicast.xml:/cyclonedds_multicast.xml
 
   ros2:
     container_name: roshumble
@@ -20,9 +20,9 @@ services:
       - zenoh
     environment:
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-      - CYCLONEDDS_URI=file:///dds.xml
+      - CYCLONEDDS_URI=file:///cyclonedds_multicast.xml
       - ROS_DOMAIN_ID=1
     command: bash -c "./ros2servers.sh "
     volumes:
-      - ${PWD}/ddscfg/cyclonedds_multicast.xml:/dds.xml
+      - ${PWD}/ddscfg/cyclonedds_multicast.xml:/cyclonedds_multicast.xml
       - ${PWD}/scripts/ros2servers.sh:/ros2servers.sh
